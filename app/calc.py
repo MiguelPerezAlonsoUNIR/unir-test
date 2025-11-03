@@ -1,5 +1,5 @@
 import app
-
+import math
 
 class InvalidPermissions(Exception):
     pass
@@ -10,7 +10,7 @@ class Calculator:
         self.check_types(x, y)
         return x + y
 
-    def substract(self, x, y):
+    def subtract(self, x, y):
         self.check_types(x, y)
         return x - y
 
@@ -31,6 +31,18 @@ class Calculator:
     def power(self, x, y):
         self.check_types(x, y)
         return x ** y
+    
+    def sqrt(self, x):
+        self.check_types(x, 0)
+        if x < 0:
+            raise ValueError("Cannot compute square root of negative number")
+        return math.sqrt(x)
+    
+    def log10(self, x):
+        self.check_types(x, 0)
+        if x <= 0:
+            raise ValueError("Logarithm undefined for non-positive numbers")
+        return math.log10(x)
 
     def check_types(self, x, y):
         if not isinstance(x, (int, float)) or not isinstance(y, (int, float)):
